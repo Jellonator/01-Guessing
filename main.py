@@ -18,32 +18,37 @@ starting_time = time.time()
 num_guesses = 0
 previous_diff = None
 
+print("I have a number between 1 and 100.")
+
 while guess != number:
-    guess_str = input("What is your guess? ")
+    guess_str = input("What is your guess [1-100]? ")
     try:
         guess = int(guess_str)
-        num_guesses += 1
-        if guess == number:
-            print("Correct!")
-            ending_time = time.time()
-            timediff = ending_time - starting_time
-            print("It took you {0} guesses within {1:,.1f} seconds.".format(num_guesses, timediff))
-        else:
-            if args.mode == "lowhigh":
-                if guess < number:
-                    print("Your guess is too low")
-                else:
-                    print("Your guess is too high")
-            elif args.mode == "hotcold":
-                diff = abs(guess - number)
-                if previous_diff == None:
+        if guess >= 1 and guess <= 100:
+            num_guesses += 1
+            if guess == number:
+                print("Correct!")
+                ending_time = time.time()
+                timediff = ending_time - starting_time
+                print("It took you {0} guesses within {1:,.1f} seconds.".format(num_guesses, timediff))
+            else:
+                if args.mode == "lowhigh":
+                    if guess < number:
+                        print("Your guess is too low")
+                    else:
+                        print("Your guess is too high")
+                elif args.mode == "hotcold":
+                    diff = abs(guess - number)
+                    if previous_diff == None:
+                        previous_diff = diff
+                    elif diff < previous_diff:
+                        print("Warmer")
+                    elif diff == previous_diff:
+                        print("Same")
+                    else:
+                        print("Colder")
                     previous_diff = diff
-                elif diff < previous_diff:
-                    print("Warmer")
-                elif diff == previous_diff:
-                    print("Same")
-                else:
-                    print("Colder")
-                previous_diff = diff
+        else:
+            print("Number is not in range.")
     except ValueError as e:
         print("Not a valid integer.")
