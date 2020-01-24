@@ -1,5 +1,5 @@
-# MSCH-C220-guessing-game
-A simple guessing game.
+# 01-Guessing
+A simple guessing game for a game design class.
 
 Run `main.py` to play a guessing game. The game will choose a random number between 1 and 100, and you have to guess what it is. If your guess is lower than the number, the game will tell you "Your guess is too low," and if your guess is larger than the number, the game will tell you "Your guess is too high." If you guess correctly, then the game will tell you that your answer is correct, how many guesses you took, and how much time it took you to guess correctly.
 
